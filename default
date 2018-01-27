@@ -1,0 +1,28 @@
+
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root /home/tanima/Downloads/iceAndFire;
+
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name _;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+	
+	error_page 404 /errorPage_404.html;
+	location = /errorPage_404.html {
+		root /home/tanima/Downloads/iceAndFire;
+		internal;		
+	}
+
+	error_page 500 502 503 504 /errorPage_50x.html;
+	location = /errorPage_50x.html {
+		root /home/tanima/Downloads/iceAndFire;
+		internal;
+	}
+	
+}
